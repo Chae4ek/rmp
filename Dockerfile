@@ -35,7 +35,7 @@ RUN python3 -m pip install -r requirements.txt
 
 # get latest changes
 RUN git clone -b main --single-branch https://github.com/Chae4ek/rmp-model.git
-RUN cd rmp-model && python3 -m pip install -r requirements.txt && dvc pull -r origin
+RUN cd rmp-model && python3 -m pip install -r requirements.txt && GDRIVE_CREDENTIALS_DATA=$GDRIVE_CREDENTIALS_DATA dvc pull -r origin
 
 # EXPOSE 80
 
