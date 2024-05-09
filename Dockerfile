@@ -1,3 +1,5 @@
+# syntax = docker/dockerfile:1.2
+
 FROM golang:latest as builder
 
 WORKDIR /app
@@ -19,8 +21,6 @@ RUN apt-get update -y && apt-get install -y \
 # npm
 # RUN npm install -g pnpm
 
-RUN useradd --create-home appuser
-USER appuser
 WORKDIR /app
 
 COPY frontend/ frontend/
@@ -35,9 +35,13 @@ RUN python3 -m pip install -r requirements.txt
 
 # get latest changes
 RUN git clone -b main --single-branch https://github.com/Chae4ek/rmp-model.git
-RUN cd rmp-model && python3 -m pip install -r requirements.txt && GDRIVE_CREDENTIALS_DATA=$GDRIVE_CREDENTIALS_DATA dvc pull -r origin
+WORKDIR /app/rmp-model
+RUN python3 -m pip install -r requirements.txt && dvc remote modify origin --local gdrive_service_account_json_file_path /etc/secrets/gdrive
+RUN --mount=type=secret,id=gdrive,dst=/etc/secrets/gdrive dvc pull
 
 # EXPOSE 80
 
+RUN useradd --create-home appuser
+USER appuser
 WORKDIR /app/backend
 CMD ["./main"]
