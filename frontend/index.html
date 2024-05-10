@@ -43,12 +43,19 @@
         </li>
         <li>
           <label>
-            Тип ремонта (repair type):
+            Тип ремонта (renovation type):
             <select id="repair_type" required>
               <option value="">---</option>
-              <option value="1">TODO 1</option>
-              <option value="2">TODO 2</option>
-              <option value="3">TODO 3</option>
+              <option value="0">Без ремонта (without renovation)</option>
+              <option value="1">Косметический (cosmetic)</option>
+              <option value="2">Евроремонт (renovation)</option>
+              <option value="3">Дизайнерский (designer renovation)</option>
+              <option value="4">Под чистовую отделку (for fine finishing)</option>
+              <option value="5">Требует ремонта (requires renovation)</option>
+              <option value="6">Чистовая отделка (fine finishing)</option>
+              <option value="7">Под ключ (turnkey)</option>
+              <option value="8">Предчистовая отделка (pre-finishing)</option>
+              <option value="9">Стандартный ремонт (standard renovation)</option>
             </select>
           </label>
         </li>
@@ -60,11 +67,12 @@
             Тип отопления (heating type):
             <select id="heating_type" required>
               <option value="">---</option>
-              <option value="1">TODO 1</option>
-              <option value="2">TODO 2</option>
-              <option value="3">TODO 3</option>
-              <option value="4">TODO 4</option>
-              <option value="5">TODO 5</option>
+              <option value="0">Центральное (central)</option>
+              <option value="1">Котел/Квартирное (boiler/apartment)</option>
+              <option value="2">Автономная котельная (autonomous boiler room)</option>
+              <option value="3">Индивидуальный тепловой пункт (individual heating point)</option>
+              <option value="4">Печь (oven)</option>
+              <option value="5">Электрическое (electric)</option>
             </select>
           </label>
         </li>
