@@ -99,7 +99,7 @@ func (c *ParseCommand) start() error {
 	}
 
 	c.cmd = exec.Command("pnpm", "start")
-	c.cmd.Dir = "../rmp-parsers/alex_ts"
+	c.cmd.Dir = "../rmp-parsers/domclick"
 	c.out = &bytes.Buffer{}
 	c.cmd.Stdout = c.out
 	c.cmd.Stderr = c.out
