@@ -31,6 +31,16 @@ func Prediction(ctx *gin.Context) {
 }
 
 func getPrediction(ctx *gin.Context, prediction interface{}) error {
+	city, err := strconv.Atoi(ctx.Query("city"))
+	if err != nil {
+		return err
+	}
+	if city < 0 {
+		city = 0
+	}
+	if city > 3 {
+		city = 3
+	}
 	room_count, err := strconv.Atoi(ctx.Query("room_count"))
 	if err != nil {
 		return err
@@ -73,7 +83,8 @@ func getPrediction(ctx *gin.Context, prediction interface{}) error {
 	}
 
 	resp, err := httpPkg.HttpLocalClient.Get("http://127.0.0.1:4567/" +
-		"?room_count=" + strconv.Itoa(room_count) +
+		"?city=" + strconv.Itoa(city) +
+		"&room_count=" + strconv.Itoa(room_count) +
 		"&floor=" + strconv.Itoa(floor) +
 		"&total_floors=" + strconv.Itoa(total_floors) +
 		"&area=" + strconv.FormatFloat(area, 'f', -1, 64) +

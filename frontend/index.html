@@ -21,6 +21,18 @@
     >
       <ul>
         <li>
+          <label>
+            Город (city):
+            <select id="city" required>
+              <option value="">---</option>
+              <option value="0">Казань (Kazan)</option>
+              <option value="1">Москва (Moscow)</option>
+              <option value="2">Омск (Omsk)</option>
+              <option value="3">Санкт-Петербург (St. Petersburg)</option>
+            </select>
+          </label>
+        </li>
+        <li>
           <label>Количество комнат (room count): <input type="number" id="room_count" required /></label>
         </li>
         <li>
@@ -140,7 +152,8 @@
 
       function getPredictionQuery() {
         let query = "";
-        query += "?room_count=" + encodeURIComponent(String(document.getElementById("room_count").value));
+        query += "?city=" + encodeURIComponent(String(document.getElementById("city").value));
+        query += "&room_count=" + encodeURIComponent(String(document.getElementById("room_count").value));
         query += "&floor=" + encodeURIComponent(String(document.getElementById("floor").value));
         query += "&total_floors=" + encodeURIComponent(String(document.getElementById("total_floors").value));
         query += "&area=" + encodeURIComponent(String(document.getElementById("area").value));
