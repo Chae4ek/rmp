@@ -38,8 +38,8 @@ func getPrediction(ctx *gin.Context, prediction interface{}) error {
 	if city < 0 {
 		city = 0
 	}
-	if city > 2 {
-		city = 2
+	if city > 3 {
+		city = 3
 	}
 	room_count, err := strconv.Atoi(ctx.Query("room_count"))
 	if err != nil {
