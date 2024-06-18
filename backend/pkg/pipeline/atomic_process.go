@@ -43,7 +43,7 @@ func NewAtomicProcess[T Command](command T) *AtomicProcess[T] {
 	return &AtomicProcess[T]{
 		command:      command,
 		canInterrupt: make(chan bool, 1),
-		recover:      make(chan bool, 1),
+		recover:      make(chan bool),
 	}
 }
 
