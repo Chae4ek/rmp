@@ -36,6 +36,7 @@ const (
 	_Stopped     int32 = 0
 	_Running     int32 = 1
 	_Interrupted int32 = 2
+	_Stopping    int32 = 3
 )
 
 func NewAtomicProcess[T Command](command T) *AtomicProcess[T] {
@@ -75,8 +76,9 @@ func (p *AtomicProcess[T]) TryStart() bool {
 
 	go func() {
 		defer func() {
-			if p.state.CompareAndSwap(_Running, _Stopped) {
+			if p.state.CompareAndSwap(_Running, _Stopping) {
 				p.AllowInterruption(false)
+				p.state.Store(_Stopped)
 				return
 			}
 			select {
